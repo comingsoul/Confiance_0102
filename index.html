@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding Recital · 도윤 & 하은</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nanum+Myeongjo:wght@400;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --curtain:#6b1424; --curtain-dark:#3e0a14;
+    --gold:#c9a45c; --gold-soft:#e6d3a3;
+    --paper:#f8f2e6; --ink:#2b2220; --muted:#7a6a62;
+    --crayon-pink:#e9879a; --crayon-blue:#6fa8d6; --crayon-yellow:#f2c14e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#1c0a0e;font-family:'Nanum Myeongjo',serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;position:relative}
+
+  /* ===== Curtain intro ===== */
+  .curtain{position:fixed;inset:0;z-index:50;display:flex;pointer-events:none}
+  .curtain div{flex:1;background:
+      repeating-linear-gradient(90deg,var(--curtain) 0 18px,var(--curtain-dark) 18px 26px,var(--curtain) 26px 40px);
+    box-shadow:inset 0 -40px 60px rgba(0,0,0,.4);
+    transition:transform 1.6s cubic-bezier(.7,0,.2,1)}
+  .curtain.open .l{transform:translateX(-100%)}
+  .curtain.open .r{transform:translateX(100%)}
+
+  /* ===== Cover / Poster ===== */
+  .poster{min-height:100svh;background:radial-gradient(ellipse at 50% 30%,#8a1f33 0%,var(--curtain) 45%,var(--curtain-dark) 100%);
+    color:var(--gold-soft);text-align:center;padding:56px 28px 40px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+  .poster::before{content:"";position:absolute;inset:14px;border:1px solid rgba(201,164,92,.5);pointer-events:none}
+  .poster::after{content:"";position:absolute;inset:20px;border:1px solid rgba(201,164,92,.25);pointer-events:none}
+  .presents{font-family:'Playfair Display',serif;font-style:italic;letter-spacing:.2em;font-size:12px;opacity:.85}
+  .spot{width:220px;height:220px;margin:28px auto 8px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,240,200,.35),rgba(255,240,200,0) 70%);display:grid;place-items:center}
+  .spot svg{width:120px;height:120px}
+  .title{font-family:'Playfair Display',serif;font-size:44px;line-height:1.05;color:#f6e7c1}
+  .title em{display:block;font-size:20px;letter-spacing:.35em;margin-bottom:10px;color:var(--gold)}
+  .cast-line{margin-top:22px;font-size:15px;letter-spacing:.08em}
+  .cast-line b{font-size:22px;color:#fff3d6;font-weight:700}
+  .cast-line small{display:block;font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--gold);margin-top:2px}
+  .amp{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);margin:6px 0;font-size:22px}
+  .when{border-top:1px solid rgba(201,164,92,.5);border-bottom:1px solid rgba(201,164,92,.5);padding:12px 0;margin-top:28px;font-size:13px;letter-spacing:.12em}
+  .scroll-hint{font-size:11px;letter-spacing:.3em;opacity:.7;margin-top:18px;animation:bob 2s infinite}
+  @keyframes bob{50%{transform:translateY(5px)}}
+
+  /* ===== Common section ===== */
+  section{padding:64px 28px;text-align:center;position:relative}
+  .label{font-family:'Playfair Display',serif;font-style:italic;color:var(--curtain);font-size:13px;letter-spacing:.3em}
+  h2{font-size:22px;margin:8px 0 26px;font-weight:700}
+  .orn{color:var(--gold);letter-spacing:.6em;font-size:12px;margin:0 0 18px}
+  p.body{font-size:15px;line-height:2;color:#4a3d38}
+  .reveal{opacity:0;transform:translateY(24px);transition:all .9s ease}
+  .reveal.on{opacity:1;transform:none}
+
+  /* doodles (kindergarten teacher touch) */
+  .doodle{font-family:'Gaegu',cursive;font-size:17px;color:var(--crayon-blue);margin-top:22px;transform:rotate(-2deg)}
+  .stars{position:absolute;font-family:'Gaegu';font-size:22px;opacity:.8}
+
+  /* ===== Program ===== */
+  .program{background:#fffaf0;border:1px solid var(--gold-soft);padding:30px 22px;box-shadow:0 10px 30px rgba(107,20,36,.08);text-align:left}
+  .prog-item{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px dashed #e2d4b8}
+  .prog-item:last-child{border:0}
+  .prog-no{font-family:'Playfair Display',serif;font-style:italic;color:var(--curtain);width:56px;flex-shrink:0;font-size:14px}
+  .prog-t{flex:1}
+  .prog-t b{display:block;font-size:15px}
+  .prog-t span{font-size:13px;color:var(--muted);line-height:1.7}
+  .prog-y{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold)}
+
+  /* ===== Cast ===== */
+  .cast-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cast-card{background:#fff;border:1px solid #eadfca;padding:22px 12px}
+  .avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:34px}
+  .avatar.groom{background:linear-gradient(135deg,#f1e2c3,#d9bf8a)}
+  .avatar.bride{background:linear-gradient(135deg,#fde3e8,#f6c3cd)}
+  .role{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--curtain);letter-spacing:.15em}
+  .cast-card h3{font-size:19px;margin:6px 0}
+  .cast-card .parents{font-size:12px;color:var(--muted);line-height:1.7}
+  .cast-card .note{font-size:12px;margin-top:10px;color:#5b4d47}
+  .cast-card .note.kid{font-family:'Gaegu';font-size:16px;color:var(--crayon-pink)}
+
+  /* ===== Ticket ===== */
+  .ticket-bg{background:var(--curtain-dark)}
+  .ticket-bg .label{color:var(--gold)} .ticket-bg h2{color:#f6e7c1}
+  .ticket{display:flex;background:var(--paper);border-radius:10px;overflow:hidden;text-align:left;position:relative}
+  .ticket .main{flex:1;padding:22px 18px;border-right:2px dashed #c9b48a;position:relative}
+  .ticket .stub{width:92px;padding:18px 8px;text-align:center;background:#f1e6cf;display:flex;flex-direction:column;justify-content:center}
+  .ticket .main::before,.ticket .main::after{content:"";position:absolute;right:-11px;width:20px;height:20px;border-radius:50%;background:var(--curtain-dark)}
+  .ticket .main::before{top:-10px}.ticket .main::after{bottom:-10px}
+  .t-row{margin-bottom:12px}
+  .t-row small{display:block;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.2em;color:var(--muted)}
+  .t-row b{font-size:15px}
+  .stub .adm{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.15em;color:var(--curtain);writing-mode:vertical-rl;margin:0 auto}
+  .stub .seat{font-size:12px;margin-top:10px}
+  .dday{margin-top:24px;color:var(--gold-soft);font-size:14px;letter-spacing:.1em}
+  .dday b{font-family:'Playfair Display',serif;font-size:30px;color:#fff3d6;display:block;margin-top:4px}
+
+  /* ===== Venue ===== */
+  .map{height:180px;border:1px solid #e2d4b8;background:
+     linear-gradient(90deg,#efe6d4 1px,transparent 1px) 0 0/24px 24px,
+     linear-gradient(#efe6d4 1px,transparent 1px) 0 0/24px 24px,#fbf7ee;
+     display:grid;place-items:center;font-size:13px;color:var(--muted);margin-bottom:18px}
+  .pin{font-size:28px}
+  .info-list{text-align:left;font-size:14px;line-height:1.9}
+  .info-list dt{font-weight:700;color:var(--curtain);margin-top:12px}
+  .info-list dd{color:#4a3d38}
+
+  /* ===== Gift (accordion) ===== */
+  details{background:#fff;border:1px solid #eadfca;margin-bottom:10px;text-align:left}
+  summary{padding:16px 18px;cursor:pointer;font-size:14px;list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"+";color:var(--gold);font-size:18px}
+  details[open] summary::after{content:"−"}
+  .acct{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px solid #f1e8d6;font-size:13px}
+  .acct span{color:var(--muted);font-size:12px;display:block}
+  .copy{border:1px solid var(--gold);background:none;color:var(--curtain);font-family:inherit;font-size:12px;padding:6px 12px;cursor:pointer}
+
+  /* ===== Curtain call ===== */
+  .finale{background:radial-gradient(ellipse at 50% 0%,#8a1f33,var(--curtain-dark));color:var(--gold-soft)}
+  .finale .label{color:var(--gold)} .finale h2{color:#f6e7c1}
+  .btn{display:inline-block;margin:6px 4px;padding:12px 22px;border:1px solid var(--gold);color:#f6e7c1;background:transparent;font-family:inherit;font-size:14px;text-decoration:none;cursor:pointer}
+  .btn.solid{background:var(--gold);color:var(--curtain-dark);font-weight:700}
+  footer{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;letter-spacing:.2em;color:rgba(230,211,163,.6);padding:26px 0 36px;text-align:center;background:var(--curtain-dark)}
+  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;font-size:13px;opacity:0;transition:.3s;z-index:60}
+  .toast.on{opacity:1;transform:translateX(-50%)}
+</style>
+</head>
+<body>
+<div class="curtain" id="curtain"><div class="l"></div><div class="r"></div></div>
+
+<div class="wrap">
+
+  <!-- POSTER -->
+  <header class="poster">
+    <div>
+      <p class="presents">THE FAMILIES OF KIM & LEE PRESENT</p>
+      <div class="spot">
+        <svg viewBox="0 0 120 120" fill="none" stroke="#c9a45c" stroke-width="2">
+          <path d="M44 86V30l44-10v56"/>
+          <ellipse cx="36" cy="86" rx="10" ry="7" fill="#c9a45c"/>
+          <ellipse cx="80" cy="76" rx="10" ry="7" fill="#c9a45c"/>
+          <path d="M44 42l44-10" />
+          <path d="M98 22c3 2 6 1 7-2M14 40c2-3 5-3 7-1" stroke="#f2c14e"/>
+        </svg>
+      </div>
+      <h1 class="title"><em>A WEDDING</em>Recital</h1>
+      <div class="cast-line">
+        <b>김도윤</b><small>Tenor</small>
+        <div class="amp">&</div>
+        <b>이하은</b><small>Kindergarten Teacher</small>
+      </div>
+    </div>
+    <div>
+      <div class="when">2027. 04. 17. SAT · 2:00 PM<br>더 아리아 홀</div>
+      <p class="scroll-hint">▼ OVERTURE</p>
+    </div>
+  </header>
+
+  <!-- PROLOGUE -->
+  <section class="reveal">
+    <p class="label">PROLOGUE</p>
+    <h2>초대의 말씀</h2>
+    <p class="orn">✦ ✦ ✦</p>
+    <p class="body">
+      무대 위에서 노래하던 한 사람과<br>
+      아이들의 노래를 가장 먼저 들어주던 한 사람이<br>
+      이제 같은 악보를 펼치려 합니다.<br><br>
+      서로의 박자에 귀 기울이며<br>
+      평생 한 곡의 이중창을 부르겠습니다.<br>
+      그 첫 소절에 함께해 주세요.
+    </p>
+    <p class="doodle">♪ 해바라기반 친구들도 박수 준비 완료! ♪</p>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="reveal" style="padding-top:20px">
+    <p class="label">PROGRAMME</p>
+    <h2>오늘의 프로그램</h2>
+    <div class="program">
+      <div class="prog-item"><span class="prog-no">Act I.</span><div class="prog-t"><b>첫 만남 — Andante</b><span>친구의 연주회, 객석 맨 앞줄에서</span></div><span class="prog-y">2023</span></div>
+      <div class="prog-item"><span class="prog-no">Act II.</span><div class="prog-t"><b>사랑의 노래 — Cantabile</b><span>그의 연습실과 그녀의 교실을 오가던 날들</span></div><span class="prog-y">2024</span></div>
+      <div class="prog-item"><span class="prog-no">Act III.</span><div class="prog-t"><b>프러포즈 — Fermata</b><span>노래 한 곡, 그리고 멈춰버린 시간</span></div><span class="prog-y">2026</span></div>
+      <div class="prog-item"><span class="prog-no">Finale.</span><div class="prog-t"><b>결혼식 — Duet for Life</b><span>여러분을 모시고 올리는 첫 무대</span></div><span class="prog-y">2027</span></div>
+    </div>
+  </section>
+
+  <!-- CAST -->
+  <section class="reveal" style="padding-top:20px">
+    <p class="label">THE CAST</p>
+    <h2>출연진</h2>
+    <div class="cast-grid">
+      <div class="cast-card">
+        <div class="avatar groom">🎩</div>
+        <p class="role">TENOR · 신랑</p>
+        <h3>김도윤</h3>
+        <p class="parents">김정호 · 박미경의 장남</p>
+        <p class="note">"당신을 위한 아리아를<br>평생 부를게요."</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar bride">🌷</div>
+        <p class="role">TEACHER · 신부</p>
+        <h3>이하은</h3>
+        <p class="parents">이상민 · 최유진의 장녀</p>
+        <p class="note kid">"참 잘했어요 도장<br>매일 찍어줄게요 ★"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKET -->
+  <section class="ticket-bg reveal">
+    <p class="label">ADMISSION</p>
+    <h2>초대권</h2>
+    <div class="ticket">
+      <div class="main">
+        <div class="t-row"><small>DATE</small><b>2027년 4월 17일 토요일</b></div>
+        <div class="t-row"><small>CURTAIN UP</small><b>오후 2시</b></div>
+        <div class="t-row"><small>VENUE</small><b>더 아리아 홀 3층 그랜드홀</b></div>
+        <div class="t-row" style="margin:0"><small>DRESS CODE</small><b>편안한 봄 차림</b></div>
+      </div>
+      <div class="stub">
+        <p class="adm">ADMIT ONE</p>
+        <p class="seat">VIP석<br><b>당신의 자리</b></p>
+      </div>
+    </div>
+    <p class="dday">공연까지<b id="dday">D-</b></p>
+  </section>
+
+  <!-- VENUE -->
+  <section class="reveal">
+    <p class="label">THE HALL</p>
+    <h2>오시는 길</h2>
+    <div class="map"><div><div class="pin">📍</div>지도 영역 (카카오맵/네이버지도 삽입)</div></div>
+    <dl class="info-list">
+      <dt>더 아리아 홀</dt>
+      <dd>서울특별시 ○○구 ○○로 123</dd>
+      <dt>지하철</dt>
+      <dd>○호선 ○○역 3번 출구 도보 5분</dd>
+      <dt>주차</dt>
+      <dd>건물 내 지하주차장 2시간 무료</dd>
+    </dl>
+  </section>
+
+  <!-- GIFT -->
+  <section class="reveal" style="padding-top:20px">
+    <p class="label">WITH GRATITUDE</p>
+    <h2>마음 전하실 곳</h2>
+    <details>
+      <summary>신랑 측 계좌</summary>
+      <div class="acct"><div>○○은행 000-0000-0000<span>신랑 김도윤</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
+      <div class="acct"><div>○○은행 000-0000-0000<span>아버지 김정호</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
+    </details>
+    <details>
+      <summary>신부 측 계좌</summary>
+      <div class="acct"><div>○○은행 000-0000-0000<span>신부 이하은</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
+      <div class="acct"><div>○○은행 000-0000-0000<span>어머니 최유진</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
+    </details>
+  </section>
+
+  <!-- CURTAIN CALL -->
+  <section class="finale reveal">
+    <p class="label">CURTAIN CALL</p>
+    <h2>함께해 주셔서 감사합니다</h2>
+    <p class="body" style="color:var(--gold-soft)">참석 여부를 알려주시면<br>소중한 자리를 준비해 두겠습니다.</p>
+    <div style="margin-top:24px">
+      <button class="btn solid" onclick="toast('참석 의사 전달 기능 연결 예정입니다')">참석 의사 전달</button>
+      <button class="btn" onclick="share()">초대장 공유</button>
+    </div>
+  </section>
+  <footer>— FIN —</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // curtain open
+  window.addEventListener('load',()=>setTimeout(()=>document.getElementById('curtain').classList.add('open'),300));
+
+  // reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // D-day
+  const target=new Date('2027-04-17T14:00:00+09:00');
+  const diff=Math.ceil((target-new Date())/86400000);
+  document.getElementById('dday').textContent=diff>0?'D-'+diff:(diff===0?'D-DAY':'공연 종료');
+
+  // toast + copy + share
+  function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)}
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+    const txt=b.dataset.acct;
+    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('계좌번호가 복사되었습니다')).catch(()=>toast(txt));
+  }));
+  function share(){
+    if(navigator.share){navigator.share({title:'Wedding Recital · 도윤 & 하은',url:location.href}).catch(()=>{})}
+    else{toast('주소를 복사해 공유해 주세요')}
+  }
+</script>
+</body>
+</html>
