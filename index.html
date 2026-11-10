@@ -2,298 +2,416 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wedding Recital · 도윤 & 하은</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nanum+Myeongjo:wght@400;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이기업 ♥ 김연선 결혼합니다</title>
+<meta name="description" content="2027년 1월 2일 토요일 오후 5시 · SY컨벤션웨딩홀 9층">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이기업 ♥ 김연선 결혼합니다">
+<meta property="og:description" content="2027년 1월 2일 토요일 오후 5시 · SY컨벤션웨딩홀 9층">
+<!-- 배포 후 절대 주소로 바꿔주세요. 예: https://도메인/images/13.jpg -->
+<meta property="og:image" content="images/13.jpg">
+<meta name="theme-color" content="#F1EFDA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --curtain:#6b1424; --curtain-dark:#3e0a14;
-    --gold:#c9a45c; --gold-soft:#e6d3a3;
-    --paper:#f8f2e6; --ink:#2b2220; --muted:#7a6a62;
-    --crayon-pink:#e9879a; --crayon-blue:#6fa8d6; --crayon-yellow:#f2c14e;
+  @font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal; font-style: normal; font-display: swap;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:#1c0a0e;font-family:'Nanum Myeongjo',serif;color:var(--ink);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden;position:relative}
+  /* 시안(1179px 폭) 좌표를 그대로 쓰기 위해 1u = 화면폭/1179 */
+  :root { --bg: #F1EFDA; --olive: #505537; --maxw: 430px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--bg); -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  a { -webkit-tap-highlight-color: transparent; }
+  img { display: block; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-  /* ===== Curtain intro ===== */
-  .curtain{position:fixed;inset:0;z-index:50;display:flex;pointer-events:none}
-  .curtain div{flex:1;background:
-      repeating-linear-gradient(90deg,var(--curtain) 0 18px,var(--curtain-dark) 18px 26px,var(--curtain) 26px 40px);
-    box-shadow:inset 0 -40px 60px rgba(0,0,0,.4);
-    transition:transform 1.6s cubic-bezier(.7,0,.2,1)}
-  .curtain.open .l{transform:translateX(-100%)}
-  .curtain.open .r{transform:translateX(100%)}
+  .page {
+    max-width: var(--maxw); margin: 0 auto; background: var(--bg);
+    container-type: inline-size; overflow: hidden;
+  }
+  .page * { --u: calc(100cqw / 1179); }
+  .sl { position: relative; }
+  .sl > img { width: 100%; height: auto; }
+  .hit { position: absolute; display: block; }
 
-  /* ===== Cover / Poster ===== */
-  .poster{min-height:100svh;background:radial-gradient(ellipse at 50% 30%,#8a1f33 0%,var(--curtain) 45%,var(--curtain-dark) 100%);
-    color:var(--gold-soft);text-align:center;padding:56px 28px 40px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
-  .poster::before{content:"";position:absolute;inset:14px;border:1px solid rgba(201,164,92,.5);pointer-events:none}
-  .poster::after{content:"";position:absolute;inset:20px;border:1px solid rgba(201,164,92,.25);pointer-events:none}
-  .presents{font-family:'Playfair Display',serif;font-style:italic;letter-spacing:.2em;font-size:12px;opacity:.85}
-  .spot{width:220px;height:220px;margin:28px auto 8px;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,240,200,.35),rgba(255,240,200,0) 70%);display:grid;place-items:center}
-  .spot svg{width:120px;height:120px}
-  .title{font-family:'Playfair Display',serif;font-size:44px;line-height:1.05;color:#f6e7c1}
-  .title em{display:block;font-size:20px;letter-spacing:.35em;margin-bottom:10px;color:var(--gold)}
-  .cast-line{margin-top:22px;font-size:15px;letter-spacing:.08em}
-  .cast-line b{font-size:22px;color:#fff3d6;font-weight:700}
-  .cast-line small{display:block;font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--gold);margin-top:2px}
-  .amp{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);margin:6px 0;font-size:22px}
-  .when{border-top:1px solid rgba(201,164,92,.5);border-bottom:1px solid rgba(201,164,92,.5);padding:12px 0;margin-top:28px;font-size:13px;letter-spacing:.12em}
-  .scroll-hint{font-size:11px;letter-spacing:.3em;opacity:.7;margin-top:18px;animation:bob 2s infinite}
-  @keyframes bob{50%{transform:translateY(5px)}}
+  /* BGM 버튼 */
+  .bgm {
+    position: fixed; z-index: 50;
+    top: 16px;
+    right: max(16px, calc((100vw - var(--maxw)) / 2 + 16px));
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--olive);
+    background: rgba(241, 239, 218, .85);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; gap: 3px;
+  }
+  .bgm i { display: block; width: 1.5px; background: var(--olive); border-radius: 1px; transition: height .3s; }
+  .bgm i:nth-child(1) { height: 8px; }
+  .bgm i:nth-child(2) { height: 13px; }
+  .bgm i:nth-child(3) { height: 20px; }
+  .bgm i:nth-child(4) { height: 13px; }
+  .bgm i:nth-child(5) { height: 8px; }
+  .bgm.playing i { animation: eq 1s ease-in-out infinite; }
+  .bgm.playing i:nth-child(2) { animation-delay: -.2s; }
+  .bgm.playing i:nth-child(3) { animation-delay: -.5s; }
+  .bgm.playing i:nth-child(4) { animation-delay: -.7s; }
+  .bgm.playing i:nth-child(5) { animation-delay: -.3s; }
+  .bgm:not(.playing) i { height: 3px !important; }
+  @keyframes eq { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.35); } }
 
-  /* ===== Common section ===== */
-  section{padding:64px 28px;text-align:center;position:relative}
-  .label{font-family:'Playfair Display',serif;font-style:italic;color:var(--curtain);font-size:13px;letter-spacing:.3em}
-  h2{font-size:22px;margin:8px 0 26px;font-weight:700}
-  .orn{color:var(--gold);letter-spacing:.6em;font-size:12px;margin:0 0 18px}
-  p.body{font-size:15px;line-height:2;color:#4a3d38}
-  .reveal{opacity:0;transform:translateY(24px);transition:all .9s ease}
-  .reveal.on{opacity:1;transform:none}
+  /* 갤러리: 시안 4309~5222 구간 */
+  .gallery { position: relative; height: calc(var(--u) * 913); }
+  .g-scroll {
+    position: absolute; left: calc(var(--u) * 157); top: 0;
+    width: calc(var(--u) * 865); height: 100%;
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .g-scroll::-webkit-scrollbar { display: none; }
+  .g-grid {
+    display: grid; grid-template-columns: repeat(3, calc(var(--u) * 256));
+    column-gap: calc(var(--u) * 48.5); row-gap: calc(var(--u) * 100);
+    padding: calc(var(--u) * 7) 0 calc(var(--u) * 4);
+  }
+  .g-item { display: block; text-align: left; }
+  .g-item .im { width: 100%; height: calc(var(--u) * 385); background: var(--olive); overflow: hidden; }
+  .g-item img { width: 100%; height: 100%; object-fit: cover; }
+  .g-item .no {
+    display: block; margin-top: calc(var(--u) * 20);
+    font-family: 'S-CoreDream-3Light', sans-serif;
+    font-size: calc(var(--u) * 27); line-height: calc(var(--u) * 26); color: #85877A;
+  }
+  .g-track {
+    position: absolute; left: calc(var(--u) * 1050); top: 0;
+    width: calc(var(--u) * 15); height: 100%; background: #DAD9BA; border-radius: calc(var(--u) * 8);
+  }
+  .g-thumb {
+    position: absolute; left: calc(var(--u) * -3); top: 0;
+    width: calc(var(--u) * 21); height: calc(var(--u) * 55);
+    background: var(--olive); border-radius: calc(var(--u) * 11);
+    touch-action: none;
+  }
 
-  /* doodles (kindergarten teacher touch) */
-  .doodle{font-family:'Gaegu',cursive;font-size:17px;color:var(--crayon-blue);margin-top:22px;transform:rotate(-2deg)}
-  .stars{position:absolute;font-family:'Gaegu';font-size:22px;opacity:.8}
+  /* 지도 */
+  /* 안쪽 테두리선(시안 x124~1055, y8326~8976)이 네 면 모두 보이도록 안으로 여백 */
+  .map-frame { position: absolute; left: calc(var(--u) * 136); top: calc(var(--u) * 3114); width: calc(var(--u) * 908); height: calc(var(--u) * 630); overflow: hidden; background: var(--bg); }
+  .map-frame iframe, .map-frame #naverMap { width: 100%; height: 100%; border: 0; display: block; }
 
-  /* ===== Program ===== */
-  .program{background:#fffaf0;border:1px solid var(--gold-soft);padding:30px 22px;box-shadow:0 10px 30px rgba(107,20,36,.08);text-align:left}
-  .prog-item{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px dashed #e2d4b8}
-  .prog-item:last-child{border:0}
-  .prog-no{font-family:'Playfair Display',serif;font-style:italic;color:var(--curtain);width:56px;flex-shrink:0;font-size:14px}
-  .prog-t{flex:1}
-  .prog-t b{display:block;font-size:15px}
-  .prog-t span{font-size:13px;color:var(--muted);line-height:1.7}
-  .prog-y{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold)}
+  /* 계좌 아코디언 */
+  .acc-head { display: block; width: 100%; }
+  .acc-head img { width: 100%; height: auto; }
+  .acc-body { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .4s ease; }
+  .acc-body > div { overflow: hidden; }
+  .acc.closed .acc-body { grid-template-rows: 0fr; }
+  .acc.last.closed .acc-head { border-bottom: calc(var(--u) * 2) solid #8E9077; }
 
-  /* ===== Cast ===== */
-  .cast-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .cast-card{background:#fff;border:1px solid #eadfca;padding:22px 12px}
-  .avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:34px}
-  .avatar.groom{background:linear-gradient(135deg,#f1e2c3,#d9bf8a)}
-  .avatar.bride{background:linear-gradient(135deg,#fde3e8,#f6c3cd)}
-  .role{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--curtain);letter-spacing:.15em}
-  .cast-card h3{font-size:19px;margin:6px 0}
-  .cast-card .parents{font-size:12px;color:var(--muted);line-height:1.7}
-  .cast-card .note{font-size:12px;margin-top:10px;color:#5b4d47}
-  .cast-card .note.kid{font-family:'Gaegu';font-size:16px;color:var(--crayon-pink)}
+  .foot {
+    padding: calc(var(--u) * 140) 0 calc(var(--u) * 220); text-align: center;
+    font-family: 'La Belle Aurore', cursive; font-size: calc(var(--u) * 54); color: #6C7052;
+  }
 
-  /* ===== Ticket ===== */
-  .ticket-bg{background:var(--curtain-dark)}
-  .ticket-bg .label{color:var(--gold)} .ticket-bg h2{color:#f6e7c1}
-  .ticket{display:flex;background:var(--paper);border-radius:10px;overflow:hidden;text-align:left;position:relative}
-  .ticket .main{flex:1;padding:22px 18px;border-right:2px dashed #c9b48a;position:relative}
-  .ticket .stub{width:92px;padding:18px 8px;text-align:center;background:#f1e6cf;display:flex;flex-direction:column;justify-content:center}
-  .ticket .main::before,.ticket .main::after{content:"";position:absolute;right:-11px;width:20px;height:20px;border-radius:50%;background:var(--curtain-dark)}
-  .ticket .main::before{top:-10px}.ticket .main::after{bottom:-10px}
-  .t-row{margin-bottom:12px}
-  .t-row small{display:block;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.2em;color:var(--muted)}
-  .t-row b{font-size:15px}
-  .stub .adm{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.15em;color:var(--curtain);writing-mode:vertical-rl;margin:0 auto}
-  .stub .seat{font-size:12px;margin-top:10px}
-  .dday{margin-top:24px;color:var(--gold-soft);font-size:14px;letter-spacing:.1em}
-  .dday b{font-family:'Playfair Display',serif;font-size:30px;color:#fff3d6;display:block;margin-top:4px}
+  /* 토스트 */
+  .toast {
+    position: fixed; left: 50%; bottom: calc(40px + env(safe-area-inset-bottom)); z-index: 200;
+    transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+    background: rgba(60, 64, 40, .92); color: #F1EFDA; padding: 9px 18px; border-radius: 20px;
+    font-size: 14px; white-space: nowrap; transition: opacity .3s, transform .3s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-  /* ===== Venue ===== */
-  .map{height:180px;border:1px solid #e2d4b8;background:
-     linear-gradient(90deg,#efe6d4 1px,transparent 1px) 0 0/24px 24px,
-     linear-gradient(#efe6d4 1px,transparent 1px) 0 0/24px 24px,#fbf7ee;
-     display:grid;place-items:center;font-size:13px;color:var(--muted);margin-bottom:18px}
-  .pin{font-size:28px}
-  .info-list{text-align:left;font-size:14px;line-height:1.9}
-  .info-list dt{font-weight:700;color:var(--curtain);margin-top:12px}
-  .info-list dd{color:#4a3d38}
-
-  /* ===== Gift (accordion) ===== */
-  details{background:#fff;border:1px solid #eadfca;margin-bottom:10px;text-align:left}
-  summary{padding:16px 18px;cursor:pointer;font-size:14px;list-style:none;display:flex;justify-content:space-between}
-  summary::after{content:"+";color:var(--gold);font-size:18px}
-  details[open] summary::after{content:"−"}
-  .acct{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px solid #f1e8d6;font-size:13px}
-  .acct span{color:var(--muted);font-size:12px;display:block}
-  .copy{border:1px solid var(--gold);background:none;color:var(--curtain);font-family:inherit;font-size:12px;padding:6px 12px;cursor:pointer}
-
-  /* ===== Curtain call ===== */
-  .finale{background:radial-gradient(ellipse at 50% 0%,#8a1f33,var(--curtain-dark));color:var(--gold-soft)}
-  .finale .label{color:var(--gold)} .finale h2{color:#f6e7c1}
-  .btn{display:inline-block;margin:6px 4px;padding:12px 22px;border:1px solid var(--gold);color:#f6e7c1;background:transparent;font-family:inherit;font-size:14px;text-decoration:none;cursor:pointer}
-  .btn.solid{background:var(--gold);color:var(--curtain-dark);font-weight:700}
-  footer{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;letter-spacing:.2em;color:rgba(230,211,163,.6);padding:26px 0 36px;text-align:center;background:var(--curtain-dark)}
-  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;font-size:13px;opacity:0;transition:.3s;z-index:60}
-  .toast.on{opacity:1;transform:translateX(-50%)}
+  /* 라이트박스 */
+  .lb {
+    position: fixed; inset: 0; z-index: 100; background: rgba(28, 30, 20, .94);
+    display: none; align-items: center; justify-content: center; touch-action: pan-y;
+  }
+  .lb.open { display: flex; }
+  .lb img { max-width: 100%; max-height: 82vh; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+  .lb .lb-close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; color: #F1EFDA; font-size: 28px; line-height: 1; }
+  .lb .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 64px; color: #F1EFDA; font-size: 30px; }
+  .lb .lb-prev { left: 4px; }
+  .lb .lb-next { right: 4px; }
+  .lb .lb-no {
+    position: absolute; bottom: calc(18px + env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center;
+    color: #F1EFDA; font-family: 'S-CoreDream-3Light', sans-serif; letter-spacing: .1em; font-size: 14px;
+  }
 </style>
 </head>
 <body>
-<div class="curtain" id="curtain"><div class="l"></div><div class="r"></div></div>
+<main class="page">
+  <h1 class="sr-only">이기업 ♥ 김연선 결혼합니다. 2027년 1월 2일 토요일 오후 5시, SY컨벤션웨딩홀 9층</h1>
 
-<div class="wrap">
+  <button class="bgm" id="bgmBtn" type="button" aria-label="배경음악 재생/정지"><i></i><i></i><i></i><i></i><i></i></button>
+  <audio id="bgm" src="music/bgm.mp3" loop preload="auto"></audio>
 
-  <!-- POSTER -->
-  <header class="poster">
-    <div>
-      <p class="presents">THE FAMILIES OF KIM & LEE PRESENT</p>
-      <div class="spot">
-        <svg viewBox="0 0 120 120" fill="none" stroke="#c9a45c" stroke-width="2">
-          <path d="M44 86V30l44-10v56"/>
-          <ellipse cx="36" cy="86" rx="10" ry="7" fill="#c9a45c"/>
-          <ellipse cx="80" cy="76" rx="10" ry="7" fill="#c9a45c"/>
-          <path d="M44 42l44-10" />
-          <path d="M98 22c3 2 6 1 7-2M14 40c2-3 5-3 7-1" stroke="#f2c14e"/>
-        </svg>
-      </div>
-      <h1 class="title"><em>A WEDDING</em>Recital</h1>
-      <div class="cast-line">
-        <b>김도윤</b><small>Tenor</small>
-        <div class="amp">&</div>
-        <b>이하은</b><small>Kindergarten Teacher</small>
-      </div>
-    </div>
-    <div>
-      <div class="when">2027. 04. 17. SAT · 2:00 PM<br>더 아리아 홀</div>
-      <p class="scroll-hint">▼ OVERTURE</p>
-    </div>
-  </header>
+  <!-- 메인 · 인사말 · just Us 제목 (시안 0~4309) -->
+  <div class="sl"><img src="images/design/s1.jpg" width="1179" height="4309" alt="Nous Nous Marions! 신랑 이기업, 신부 김연선. 김옥의 장남 이기업, 류영신의 장녀 김연선. 2027년 1월 2일 토요일 오후 5시 SY컨벤션웨딩홀 9층"></div>
 
-  <!-- PROLOGUE -->
-  <section class="reveal">
-    <p class="label">PROLOGUE</p>
-    <h2>초대의 말씀</h2>
-    <p class="orn">✦ ✦ ✦</p>
-    <p class="body">
-      무대 위에서 노래하던 한 사람과<br>
-      아이들의 노래를 가장 먼저 들어주던 한 사람이<br>
-      이제 같은 악보를 펼치려 합니다.<br><br>
-      서로의 박자에 귀 기울이며<br>
-      평생 한 곡의 이중창을 부르겠습니다.<br>
-      그 첫 소절에 함께해 주세요.
-    </p>
-    <p class="doodle">♪ 해바라기반 친구들도 박수 준비 완료! ♪</p>
+  <!-- 갤러리 (시안 4309~5222) -->
+  <section class="gallery" aria-label="갤러리">
+    <div class="g-scroll" id="gScroll"><div class="g-grid" id="gGrid"></div></div>
+    <div class="g-track" id="gTrack"><div class="g-thumb" id="gThumb"></div></div>
   </section>
 
-  <!-- PROGRAM -->
-  <section class="reveal" style="padding-top:20px">
-    <p class="label">PROGRAMME</p>
-    <h2>오늘의 프로그램</h2>
-    <div class="program">
-      <div class="prog-item"><span class="prog-no">Act I.</span><div class="prog-t"><b>첫 만남 — Andante</b><span>친구의 연주회, 객석 맨 앞줄에서</span></div><span class="prog-y">2023</span></div>
-      <div class="prog-item"><span class="prog-no">Act II.</span><div class="prog-t"><b>사랑의 노래 — Cantabile</b><span>그의 연습실과 그녀의 교실을 오가던 날들</span></div><span class="prog-y">2024</span></div>
-      <div class="prog-item"><span class="prog-no">Act III.</span><div class="prog-t"><b>프러포즈 — Fermata</b><span>노래 한 곡, 그리고 멈춰버린 시간</span></div><span class="prog-y">2026</span></div>
-      <div class="prog-item"><span class="prog-no">Finale.</span><div class="prog-t"><b>결혼식 — Duet for Life</b><span>여러분을 모시고 올리는 첫 무대</span></div><span class="prog-y">2027</span></div>
-    </div>
-  </section>
+  <!-- 말씀 · Save the Date · Location · Account 제목 (시안 5222~10215) -->
+  <div class="sl">
+    <img src="images/design/s2.jpg" width="1179" height="4993" loading="lazy" alt="Save the Date 2027년 1월 2일 토요일 오후 5시, SY Convention 9th Floor. 오시는 길: 경기도 수원시 영통구 봉영로 1612 보보스프라자 9F SY컨벤션">
+    <div class="map-frame" id="mapBox" aria-label="SY컨벤션 지도"></div>
+    <a class="hit" id="naverBtn" href="#" target="_blank" rel="noopener" aria-label="네이버 지도"
+       style="left:calc(var(--u)*112);top:calc(var(--u)*3824);width:calc(var(--u)*248);height:calc(var(--u)*90)"></a>
+    <a class="hit" id="kakaoBtn" href="#" target="_blank" rel="noopener" aria-label="카카오맵"
+       style="left:calc(var(--u)*466);top:calc(var(--u)*3824);width:calc(var(--u)*248);height:calc(var(--u)*90)"></a>
+    <button class="hit" id="tmapBtn" type="button" aria-label="티맵"
+       style="left:calc(var(--u)*820);top:calc(var(--u)*3824);width:calc(var(--u)*248);height:calc(var(--u)*90)"></button>
+    <button class="hit copy" data-copy="경기 수원시 영통구 봉영로 1612" data-msg="주소가 복사되었습니다" aria-label="본건물 주소 복사"
+       style="left:calc(var(--u)*936);top:calc(var(--u)*4216);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+    <button class="hit copy" data-copy="경기 수원시 영통구 봉영로 1598" data-msg="주소가 복사되었습니다" aria-label="영통 공영 주차장 주소 복사"
+       style="left:calc(var(--u)*936);top:calc(var(--u)*4316);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+    <button class="hit copy" data-copy="경기 수원시 영통구 청명남로28번길 20" data-msg="주소가 복사되었습니다" aria-label="플러스타운 주차장 주소 복사"
+       style="left:calc(var(--u)*936);top:calc(var(--u)*4414);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+  </div>
 
-  <!-- CAST -->
-  <section class="reveal" style="padding-top:20px">
-    <p class="label">THE CAST</p>
-    <h2>출연진</h2>
-    <div class="cast-grid">
-      <div class="cast-card">
-        <div class="avatar groom">🎩</div>
-        <p class="role">TENOR · 신랑</p>
-        <h3>김도윤</h3>
-        <p class="parents">김정호 · 박미경의 장남</p>
-        <p class="note">"당신을 위한 아리아를<br>평생 부를게요."</p>
-      </div>
-      <div class="cast-card">
-        <div class="avatar bride">🌷</div>
-        <p class="role">TEACHER · 신부</p>
-        <h3>이하은</h3>
-        <p class="parents">이상민 · 최유진의 장녀</p>
-        <p class="note kid">"참 잘했어요 도장<br>매일 찍어줄게요 ★"</p>
-      </div>
-    </div>
-  </section>
+  <!-- 신랑측 -->
+  <div class="acc">
+    <button class="acc-head" type="button" aria-expanded="true"><img src="images/design/h1.jpg" width="1179" height="125" alt="신랑측"></button>
+    <div class="acc-body"><div><div class="sl">
+      <img src="images/design/b1.jpg" width="1179" height="415" loading="lazy" alt="신랑 이기업 신한은행 110-495-148703, 어머니 김옥 신한은행 616-12-073537">
+      <button class="hit copy" data-copy="신한은행 110-495-148703" data-msg="계좌번호가 복사되었습니다" aria-label="신랑 계좌번호 복사"
+         style="left:calc(var(--u)*925);top:calc(var(--u)*60);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+      <button class="hit copy" data-copy="신한은행 616-12-073537" data-msg="계좌번호가 복사되었습니다" aria-label="신랑 어머니 계좌번호 복사"
+         style="left:calc(var(--u)*925);top:calc(var(--u)*268);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+    </div></div></div>
+  </div>
 
-  <!-- TICKET -->
-  <section class="ticket-bg reveal">
-    <p class="label">ADMISSION</p>
-    <h2>초대권</h2>
-    <div class="ticket">
-      <div class="main">
-        <div class="t-row"><small>DATE</small><b>2027년 4월 17일 토요일</b></div>
-        <div class="t-row"><small>CURTAIN UP</small><b>오후 2시</b></div>
-        <div class="t-row"><small>VENUE</small><b>더 아리아 홀 3층 그랜드홀</b></div>
-        <div class="t-row" style="margin:0"><small>DRESS CODE</small><b>편안한 봄 차림</b></div>
-      </div>
-      <div class="stub">
-        <p class="adm">ADMIT ONE</p>
-        <p class="seat">VIP석<br><b>당신의 자리</b></p>
-      </div>
-    </div>
-    <p class="dday">공연까지<b id="dday">D-</b></p>
-  </section>
+  <!-- 신부측 -->
+  <div class="acc last">
+    <button class="acc-head" type="button" aria-expanded="true"><img src="images/design/h2.jpg" width="1179" height="117" alt="신부측"></button>
+    <div class="acc-body"><div><div class="sl">
+      <img src="images/design/b2.jpg" width="1179" height="528" loading="lazy" alt="신부 김연선 국민은행 593502-01-200543, 어머니 류영신 국민은행 235601-04-001334">
+      <button class="hit copy" data-copy="국민은행 593502-01-200543" data-msg="계좌번호가 복사되었습니다" aria-label="신부 계좌번호 복사"
+         style="left:calc(var(--u)*925);top:calc(var(--u)*60);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+      <button class="hit copy" data-copy="국민은행 235601-04-001334" data-msg="계좌번호가 복사되었습니다" aria-label="신부 어머니 계좌번호 복사"
+         style="left:calc(var(--u)*925);top:calc(var(--u)*268);width:calc(var(--u)*88);height:calc(var(--u)*88)"></button>
+    </div></div></div>
+  </div>
+  <footer class="foot">Lee Kiup &amp; Kim Yeonsun</footer>
+</main>
 
-  <!-- VENUE -->
-  <section class="reveal">
-    <p class="label">THE HALL</p>
-    <h2>오시는 길</h2>
-    <div class="map"><div><div class="pin">📍</div>지도 영역 (카카오맵/네이버지도 삽입)</div></div>
-    <dl class="info-list">
-      <dt>더 아리아 홀</dt>
-      <dd>서울특별시 ○○구 ○○로 123</dd>
-      <dt>지하철</dt>
-      <dd>○호선 ○○역 3번 출구 도보 5분</dd>
-      <dt>주차</dt>
-      <dd>건물 내 지하주차장 2시간 무료</dd>
-    </dl>
-  </section>
-
-  <!-- GIFT -->
-  <section class="reveal" style="padding-top:20px">
-    <p class="label">WITH GRATITUDE</p>
-    <h2>마음 전하실 곳</h2>
-    <details>
-      <summary>신랑 측 계좌</summary>
-      <div class="acct"><div>○○은행 000-0000-0000<span>신랑 김도윤</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
-      <div class="acct"><div>○○은행 000-0000-0000<span>아버지 김정호</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
-    </details>
-    <details>
-      <summary>신부 측 계좌</summary>
-      <div class="acct"><div>○○은행 000-0000-0000<span>신부 이하은</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
-      <div class="acct"><div>○○은행 000-0000-0000<span>어머니 최유진</span></div><button class="copy" data-acct="○○은행 000-0000-0000">복사</button></div>
-    </details>
-  </section>
-
-  <!-- CURTAIN CALL -->
-  <section class="finale reveal">
-    <p class="label">CURTAIN CALL</p>
-    <h2>함께해 주셔서 감사합니다</h2>
-    <p class="body" style="color:var(--gold-soft)">참석 여부를 알려주시면<br>소중한 자리를 준비해 두겠습니다.</p>
-    <div style="margin-top:24px">
-      <button class="btn solid" onclick="toast('참석 의사 전달 기능 연결 예정입니다')">참석 의사 전달</button>
-      <button class="btn" onclick="share()">초대장 공유</button>
-    </div>
-  </section>
-  <footer>— FIN —</footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <img id="lbImg" alt="">
+  <button class="lb-close" id="lbClose" type="button" aria-label="닫기">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="이전 사진">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="다음 사진">›</button>
+  <p class="lb-no" id="lbNo"></p>
 </div>
-
 <div class="toast" id="toast"></div>
 
+<!-- 카카오맵 약도 설치 스크립트 (document.write를 쓰므로 페이지에 직접 둬야 함) -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js"></script>
 <script>
-  // curtain open
-  window.addEventListener('load',()=>setTimeout(()=>document.getElementById('curtain').classList.add('open'),300));
+(function () {
+  var PHOTO_COUNT = 20;
+  // 칸(2:3)에 잘릴 때 인물이 가운데 오도록: 가로 사진은 object-position,
+  // 세로 사진은 살짝 확대하면서 기준점을 옮김 [배율, 기준점]
+  var PHOTO_POS = { 3: '48%', 7: '48%', 8: '43%', 11: '48%', 12: '36%', 14: '54%', 20: '72%' };
+  var PHOTO_ZOOM = { 2: [1.12, '12%'], 5: [1.12, '97%'], 10: [1.12, '87%'] };
+  var PLACE = '수원 SY컨벤션';
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  // reveal on scroll
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // D-day
-  const target=new Date('2027-04-17T14:00:00+09:00');
-  const diff=Math.ceil((target-new Date())/86400000);
-  document.getElementById('dday').textContent=diff>0?'D-'+diff:(diff===0?'D-DAY':'공연 종료');
-
-  // toast + copy + share
-  function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)}
-  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
-    const txt=b.dataset.acct;
-    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast('계좌번호가 복사되었습니다')).catch(()=>toast(txt));
-  }));
-  function share(){
-    if(navigator.share){navigator.share({title:'Wedding Recital · 도윤 & 하은',url:location.href}).catch(()=>{})}
-    else{toast('주소를 복사해 공유해 주세요')}
+  /* 토스트 */
+  var toastEl = document.getElementById('toast'), toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
   }
+
+  /* 복사 */
+  function copyText(text, msg) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+      try { document.execCommand('copy'); toast(msg); } catch (e) { toast('복사에 실패했습니다'); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { toast(msg); }, fallback);
+    } else fallback();
+  }
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () { copyText(b.dataset.copy, b.dataset.msg); });
+  });
+
+  /* BGM: 자동재생이 막히면 첫 터치 때 재생 */
+  var audio = document.getElementById('bgm'), bgmBtn = document.getElementById('bgmBtn');
+  var userPaused = false;
+  audio.volume = 0.6;
+  audio.addEventListener('play', function () { bgmBtn.classList.add('playing'); });
+  audio.addEventListener('pause', function () { bgmBtn.classList.remove('playing'); });
+  function tryPlay() { var p = audio.play(); if (p && p.catch) p.catch(function () {}); }
+  bgmBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (audio.paused) { userPaused = false; tryPlay(); }
+    else { userPaused = true; audio.pause(); }  });
+  function firstTouch() {
+    if (!userPaused && audio.paused) tryPlay();
+    ['click', 'touchend', 'keydown'].forEach(function (ev) { document.removeEventListener(ev, firstTouch, true); });
+  }
+  ['click', 'touchend', 'keydown'].forEach(function (ev) { document.addEventListener(ev, firstTouch, true); });
+  tryPlay();
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { if (!audio.paused) { audio.pause(); audio.dataset.resume = '1'; } }
+    else if (audio.dataset.resume) { delete audio.dataset.resume; tryPlay(); }
+  });
+
+  /* 갤러리 */
+  var grid = document.getElementById('gGrid'), scroller = document.getElementById('gScroll');
+  var track = document.getElementById('gTrack'), thumb = document.getElementById('gThumb');
+  for (var i = 1; i <= PHOTO_COUNT; i++) {
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'g-item'; btn.dataset.idx = i;
+    btn.setAttribute('aria-label', i + '번 사진 크게 보기');
+    var style = '';
+    if (PHOTO_POS[i]) style = 'object-position:' + PHOTO_POS[i] + ' 50%';
+    if (PHOTO_ZOOM[i]) style = 'transform:scale(' + PHOTO_ZOOM[i][0] + ');transform-origin:' + PHOTO_ZOOM[i][1] + ' 50%';
+    btn.innerHTML = '<span class="im"><img loading="lazy" src="images/thumb/' + i + '.jpg" alt="" style="' + style + '"></span><span class="no">(' + pad(i) + ')</span>';
+    grid.appendChild(btn);
+  }
+  function syncScroll() {
+    var max = scroller.scrollHeight - scroller.clientHeight;
+    var ratio = max > 0 ? scroller.scrollTop / max : 0;
+    thumb.style.transform = 'translateY(' + (track.clientHeight - thumb.offsetHeight) * ratio + 'px)';
+  }
+  scroller.addEventListener('scroll', syncScroll, { passive: true });
+  window.addEventListener('resize', syncScroll);
+  syncScroll();
+
+  // 스크롤바 드래그
+  (function () {
+    var dragging = false, startY, startTop;
+    function down(e) {
+      dragging = true; startY = (e.touches ? e.touches[0] : e).clientY; startTop = scroller.scrollTop;
+      e.preventDefault();
+    }
+    function move(e) {
+      if (!dragging) return;
+      var dy = (e.touches ? e.touches[0] : e).clientY - startY;
+      var room = track.clientHeight - thumb.offsetHeight;
+      scroller.scrollTop = startTop + dy / room * (scroller.scrollHeight - scroller.clientHeight);
+    }
+    function up() { dragging = false; }
+    thumb.addEventListener('mousedown', down); thumb.addEventListener('touchstart', down, { passive: false });
+    window.addEventListener('mousemove', move); window.addEventListener('touchmove', move, { passive: true });
+    window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
+  })();
+
+  /* 라이트박스 */
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbNo = document.getElementById('lbNo');
+  var cur = 1;
+  function show(n) {
+    cur = (n - 1 + PHOTO_COUNT) % PHOTO_COUNT + 1;
+    lbImg.src = 'images/' + cur + '.jpg';
+    lbNo.textContent = pad(cur) + ' / ' + pad(PHOTO_COUNT);
+  }
+  function openLb(n) { show(n); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  grid.addEventListener('click', function (e) {
+    var item = e.target.closest('.g-item'); if (item) openLb(+item.dataset.idx);
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+  var sx = null;
+  lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+  });
+
+  /* 지도: 카카오맵 약도(키 불필요)를 기본으로 쓰고, 불러오지 못하면 구글 지도로 대체.
+     네이버 Client ID를 넣으면 네이버 지도를 우선 사용 */
+  // 네이버 클라우드 플랫폼 > Maps > Application 등록 후 받은 Client ID (선택)
+  var NAVER_MAP_CLIENT_ID = '';
+  // place.map.kakao.com/1574920035 > 약도만들기 에서 생성한 소스 (노출정보 모두 끔, 한 단계 축소)
+  var KAKAO_ROUGHMAP = { timestamp: '1794325421613', key: '4shgnhhhzc2' };
+  var KAKAO_PLACE_ID = '1574920035'; // 카카오맵 SY컨벤션
+  var VENUE = { lat: 37.25449, lng: 127.07505 }; // 경기 수원시 영통구 봉영로 1612
+  var MAP_ZOOM = 15;
+  function loadScript(src, onload, onerror) {
+    var s = document.createElement('script');
+    s.src = src; s.onload = onload; s.onerror = onerror;
+    document.head.appendChild(s);
+  }
+  var mapBox = document.getElementById('mapBox');
+  function showGoogleMap() {
+    mapBox.innerHTML = '<iframe title="SY컨벤션 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=' +
+      encodeURIComponent('경기도 수원시 영통구 봉영로 1612') + '&z=' + MAP_ZOOM + '&hl=ko&output=embed"></iframe>';
+  }
+  function showNaverMap() {
+    mapBox.innerHTML = '<div id="naverMap"></div>';
+    var pos = new naver.maps.LatLng(VENUE.lat, VENUE.lng);
+    var map = new naver.maps.Map('naverMap', { center: pos, zoom: MAP_ZOOM, scaleControl: false, mapDataControl: false });
+    new naver.maps.Marker({ position: pos, map: map });
+  }
+  function tryKakao() {
+    if (!(window.daum && daum.roughmap && daum.roughmap.Lander)) { showGoogleMap(); return; }
+    mapBox.innerHTML = '<div id="daumRoughmapContainer' + KAKAO_ROUGHMAP.timestamp + '" class="root_daum_roughmap root_daum_roughmap_landing"></div>';
+    new daum.roughmap.Lander({
+      timestamp: KAKAO_ROUGHMAP.timestamp,
+      key: KAKAO_ROUGHMAP.key,
+      mapWidth: String(mapBox.clientWidth),
+      mapHeight: String(mapBox.clientHeight - 32) // 하단 카카오맵 안내 바(32px) 포함해서 칸에 맞춤
+    }).render();
+  }
+  if (NAVER_MAP_CLIENT_ID) {
+    window.navermap_authFailure = tryKakao;
+    loadScript('https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + encodeURIComponent(NAVER_MAP_CLIENT_ID),
+      showNaverMap, tryKakao);
+  } else tryKakao();
+
+  /* 지도 앱 */
+  document.getElementById('naverBtn').href = 'https://map.naver.com/p/search/' + encodeURIComponent(PLACE);
+  document.getElementById('kakaoBtn').href = 'https://map.kakao.com/link/map/' + KAKAO_PLACE_ID;
+  document.getElementById('tmapBtn').addEventListener('click', function () {
+    if (!isMobile) { toast('티맵은 모바일에서 이용하실 수 있습니다'); return; }
+    var start = Date.now();
+    location.href = 'tmap://search?name=' + encodeURIComponent(PLACE);
+    setTimeout(function () {
+      // 앱이 열리지 않았으면 스토어로 이동
+      if (!document.hidden && Date.now() - start < 2500) {
+        location.href = isIOS ? 'https://apps.apple.com/kr/app/id431589174'
+                              : 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku';
+      }
+    }, 1500);
+  });
+
+  /* 계좌 아코디언 (시안처럼 펼친 상태로 시작) */
+  document.querySelectorAll('.acc-head').forEach(function (h) {
+    h.addEventListener('click', function () {
+      var g = h.parentElement, closed = g.classList.toggle('closed');
+      h.setAttribute('aria-expanded', !closed);
+    });
+  });
+})();
 </script>
 </body>
 </html>
