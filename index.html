@@ -98,6 +98,25 @@
     touch-action: none;
   }
 
+  /* 티켓 절취선 아래(시안 y7219~7740)를 떼어내 화면에 들어오면 뜯어지듯 기울어짐 */
+  .stub {
+    position: absolute; left: calc(var(--u) * 140); top: calc(var(--u) * 1997);
+    width: calc(var(--u) * 930);
+    transform-origin: 6% 0;
+  }
+  .stub img { display: block; width: 100%; height: auto; }
+  .stub.torn { animation: tear 1.6s cubic-bezier(.3, .1, .25, 1) forwards; }
+  @keyframes tear {
+    0%   { transform: none; }
+    12%  { transform: rotate(-.8deg); }
+    24%  { transform: rotate(.9deg); }
+    36%  { transform: rotate(-.4deg); }
+    100% { transform: translate(calc(var(--u) * 14), calc(var(--u) * 46)) rotate(5deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stub.torn { animation: none; transform: translate(calc(var(--u) * 14), calc(var(--u) * 46)) rotate(5deg); }
+  }
+
   /* 지도 */
   /* 안쪽 테두리선(시안 x124~1055, y8326~8976)이 네 면 모두 보이도록 안으로 여백 */
   .map-frame { position: absolute; left: calc(var(--u) * 136); top: calc(var(--u) * 3114); width: calc(var(--u) * 908); height: calc(var(--u) * 630); overflow: hidden; background: var(--bg); }
@@ -162,6 +181,7 @@
   <!-- 말씀 · Save the Date · Location · Account 제목 (시안 5222~10215) -->
   <div class="sl">
     <img src="images/design/s2.jpg" width="1179" height="4993" loading="lazy" alt="Save the Date 2027년 1월 2일 토요일 오후 5시, SY Convention 9th Floor. 오시는 길: 경기도 수원시 영통구 봉영로 1612 보보스프라자 9F SY컨벤션">
+    <div class="stub" id="ticketStub"><img src="images/design/stub.jpg" width="930" height="521" loading="lazy" alt=""></div>
     <div class="map-frame" id="mapBox" aria-label="SY컨벤션 지도"></div>
     <a class="hit" id="naverBtn" href="#" target="_blank" rel="noopener" aria-label="네이버 지도"
        style="left:calc(var(--u)*112);top:calc(var(--u)*3824);width:calc(var(--u)*248);height:calc(var(--u)*90)"></a>
@@ -398,6 +418,17 @@
     loadScript('https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + encodeURIComponent(NAVER_MAP_CLIENT_ID),
       showNaverMap, tryKakao);
   } else tryKakao();
+
+  /* 티켓 뜯기: 절취선 부분이 화면에 충분히 들어오면 한 번 실행 */
+  var stub = document.getElementById('ticketStub');
+  if ('IntersectionObserver' in window) {
+    var tearIo = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      tearIo.disconnect();
+      setTimeout(function () { stub.classList.add('torn'); }, 500);
+    }, { threshold: 0.9 });
+    tearIo.observe(stub);
+  } else stub.classList.add('torn');
 
   /* 지도 앱 */
   document.getElementById('naverBtn').href = 'https://map.naver.com/p/search/' + encodeURIComponent(PLACE);
