@@ -8,8 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="이기업 ♥ 김연선 결혼합니다">
 <meta property="og:description" content="2027년 1월 2일 토요일 오후 5시 · SY컨벤션웨딩홀 9층">
-<!-- 배포 후 절대 주소로 바꿔주세요. 예: https://도메인/images/13.jpg -->
-<meta property="og:image" content="images/13.jpg">
+<meta property="og:url" content="https://confiance-0102.pages.dev/">
+<meta property="og:image" content="https://confiance-0102.pages.dev/images/13.jpg">
 <meta name="theme-color" content="#F1EFDA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@
     padding: calc(var(--u) * 7) 0 calc(var(--u) * 4);
   }
   .g-item { display: block; text-align: left; }
-  .g-item .im { width: 100%; height: calc(var(--u) * 385); background: var(--olive); overflow: hidden; }
+  .g-item .im { display: block; width: 100%; height: calc(var(--u) * 385); background: var(--olive); overflow: hidden; }
   .g-item img { width: 100%; height: 100%; object-fit: cover; }
   .g-item .no {
     display: block; margin-top: calc(var(--u) * 20);
@@ -259,17 +259,28 @@
   audio.volume = 0.6;
   audio.addEventListener('play', function () { bgmBtn.classList.add('playing'); });
   audio.addEventListener('pause', function () { bgmBtn.classList.remove('playing'); });
-  function tryPlay() { var p = audio.play(); if (p && p.catch) p.catch(function () {}); }
-  bgmBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (audio.paused) { userPaused = false; tryPlay(); }
-    else { userPaused = true; audio.pause(); }  });
-  function firstTouch() {
-    if (!userPaused && audio.paused) tryPlay();
-    ['click', 'touchend', 'keydown'].forEach(function (ev) { document.removeEventListener(ev, firstTouch, true); });
+  var UNLOCK_EVENTS = ['click', 'touchend', 'keydown'];
+  function tryPlay() {
+    var p = audio.play();
+    return p && p.then ? p : Promise.resolve();
   }
-  ['click', 'touchend', 'keydown'].forEach(function (ev) { document.addEventListener(ev, firstTouch, true); });
-  tryPlay();
+  function stopUnlock() {
+    UNLOCK_EVENTS.forEach(function (ev) { document.removeEventListener(ev, firstTouch, true); });
+  }
+  bgmBtn.addEventListener('click', function () {
+    stopUnlock();
+    if (audio.paused) { userPaused = false; tryPlay().catch(function () {}); }
+    else { userPaused = true; audio.pause(); }
+  });
+  // 브라우저가 자동재생을 막으면 화면을 처음 터치할 때 재생.
+  // 음악 버튼 터치는 버튼이 직접 처리하고, 스크롤처럼 재생이 거부된 터치 뒤에도 다음 터치에서 다시 시도
+  function firstTouch(e) {
+    if (bgmBtn.contains(e.target)) return;
+    if (userPaused || !audio.paused) { stopUnlock(); return; }
+    tryPlay().then(stopUnlock, function () {});
+  }
+  UNLOCK_EVENTS.forEach(function (ev) { document.addEventListener(ev, firstTouch, true); });
+  tryPlay().then(stopUnlock, function () {});
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { if (!audio.paused) { audio.pause(); audio.dataset.resume = '1'; } }
     else if (audio.dataset.resume) { delete audio.dataset.resume; tryPlay(); }
