@@ -237,12 +237,9 @@
   .acc-item .nm.n2 { letter-spacing: .7em; }
 
   /* 방명록 */
-  .gb { margin-top: calc(var(--u) * 60); padding: 0 calc(var(--u) * 90); }
-  .ver2 .gb { margin-top: calc(var(--u) * 240); }
+  .gb { margin-top: calc(var(--u) * 240); padding: 0 calc(var(--u) * 90); }
   .gb-lead { font-size: calc(var(--u) * 50); margin-top: calc(var(--u) * 36); }
-  .thanks { font-size: calc(var(--u) * 52); line-height: 1.6; }
-  .gb .thanks { margin-bottom: calc(var(--u) * 200); }
-  #thanksSlotB .thanks { margin-top: calc(var(--u) * 44); font-size: calc(var(--u) * 48); line-height: 1.55; }
+  .lead .thanks-line { display: block; margin-top: calc(var(--u) * 44); }
   .lead .lead-h { display: block; font-size: calc(var(--u) * 54); margin-bottom: calc(var(--u) * 24); }
   .gb-form { margin-top: calc(var(--u) * 56); display: grid; gap: calc(var(--u) * 24); }
   .gb-row { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 24); }
@@ -401,9 +398,7 @@
 
   <!-- 마음 전하실 곳 -->
   <img class="ttl" src="images/design/t-acc.png" alt="Account" style="width:calc(var(--u)*428);margin-top:calc(var(--u)*300)">
-  <p class="ko lead"><b class="lead-h">마음 전하실 곳</b>먼 곳에서 보내주시는 축하의 마음도<br>감사히 다정한 기쁨으로 받겠습니다.</p>
-  <!-- 2번 버전(?ver=2): 감사 문구가 이 자리로 옴 -->
-  <div id="thanksSlotB"></div>
+  <p class="ko lead"><b class="lead-h">마음 전하실 곳</b>먼 곳에서 보내주시는 축하의 마음도<br>감사히 다정한 기쁨으로 받겠습니다.<span class="thanks-line">보내주신 따뜻한 마음에<br>깊이 감사드립니다.</span></p>
   <div class="accs">
     <div class="acc">
       <button class="acc-head" type="button" aria-expanded="false">신랑측
@@ -431,7 +426,6 @@
 
   <!-- 방명록 (Cloudflare Pages Functions /api/guestbook 사용) -->
   <section class="gb" aria-labelledby="gbTitle">
-    <p class="ko thanks" id="thanksLine">보내주신 따뜻한 마음에<br>깊이 감사드립니다.</p>
     <h2 id="gbTitle"><img class="ttl" src="images/design/t-gb.png" alt="Guestbook" style="width:calc(var(--u)*500)"></h2>
     <p class="ko gb-lead">두 사람에게 축하의 마음을 남겨주세요.</p>
     <form class="gb-form" id="gbForm" autocomplete="off">
@@ -691,11 +685,6 @@
     });
   })();
 
-  /* 2번 버전: 주소 뒤에 ?ver=2 를 붙이면 감사 문구가 Account 안내문 바로 밑으로 이동 */
-  if (/[?&]ver=2\b/.test(location.search)) {
-    document.getElementById('thanksSlotB').appendChild(document.getElementById('thanksLine'));
-    document.documentElement.classList.add('ver2');
-  }
 
   /* 주차·시간 안내 상자: 화면에 들어오면 떠오르는 효과 */
   Array.prototype.forEach.call(document.querySelectorAll('.notice'), function (notice) {
