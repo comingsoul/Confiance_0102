@@ -192,7 +192,7 @@
   .hint .chip { width: calc(var(--u) * 40); height: calc(var(--u) * 40); border-radius: calc(var(--u) * 9); }
   /* 주차 안내: 위 내용과 떨어진 안내문 상자 (시안 버튼처럼 이중 테두리), 화면에 들어오면 살며시 떠오름 */
   .notice {
-    position: relative; margin: calc(var(--u) * 130) calc(var(--u) * 80) 0;
+    position: relative; margin: calc(var(--u) * 340) calc(var(--u) * 80) 0;
     padding: calc(var(--u) * 80) calc(var(--u) * 50) calc(var(--u) * 56);
     border: calc(var(--u) * 4) solid var(--olive); outline: 1px solid var(--olive); outline-offset: calc(var(--u) * -18);
     background: rgba(255, 255, 255, .38);
@@ -237,7 +237,8 @@
   .acc-item .nm.n2 { letter-spacing: .7em; }
 
   /* 방명록 */
-  .gb { margin-top: calc(var(--u) * 240); padding: 0 calc(var(--u) * 90); }
+  .gb { margin-top: calc(var(--u) * 120); padding: 0 calc(var(--u) * 90); }
+  .ver2 .gb { margin-top: calc(var(--u) * 240); }
   .gb-lead { font-size: calc(var(--u) * 50); margin-top: calc(var(--u) * 36); }
   .thanks { font-size: calc(var(--u) * 52); line-height: 1.6; }
   .gb .thanks { margin-bottom: calc(var(--u) * 200); }
@@ -693,6 +694,7 @@
   /* 2번 버전: 주소 뒤에 ?ver=2 를 붙이면 감사 문구가 Account 안내문 바로 밑으로 이동 */
   if (/[?&]ver=2\b/.test(location.search)) {
     document.getElementById('thanksSlotB').appendChild(document.getElementById('thanksLine'));
+    document.documentElement.classList.add('ver2');
   }
 
   /* 주차·시간 안내 상자: 화면에 들어오면 떠오르는 효과 */
