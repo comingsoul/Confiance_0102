@@ -129,13 +129,14 @@
   .parents div { text-align: center; }
   .parents .n2 { letter-spacing: .9em; margin-right: -.9em; }
   .parents .child { display: block; margin-top: calc(var(--u) * 30); font-size: calc(var(--u) * 60); }
+  .parents .role { font-weight: 400; font-size: calc(var(--u) * 50); margin-right: .35em; }
   .when { margin-top: calc(var(--u) * 140); font-size: calc(var(--u) * 60); line-height: 1.6; }
 
   /* 갤러리: 좌우 여백 최소, 6장(2줄) + 다음 줄 사진 절반이 보이는 높이 */
   .g-hint { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 14); font-size: calc(var(--u) * 42); color: #6C7052; margin-top: calc(var(--u) * 30); }
   .g-hint svg { width: calc(var(--u) * 34); height: calc(var(--u) * 34); animation: nudge 1.6s ease-in-out infinite; }
   @keyframes nudge { 0%, 100% { transform: translateY(-15%); } 50% { transform: translateY(15%); } }
-  .gallery { position: relative; height: calc(var(--u) * 1485); }
+  .gallery { position: relative; height: calc(var(--u) * 1350); }
   .g-scroll {
     position: absolute; left: calc(var(--u) * 24); top: 0;
     width: calc(var(--u) * 1087); height: 100%;
@@ -145,17 +146,12 @@
   .g-scroll::-webkit-scrollbar { display: none; }
   .g-grid {
     display: grid; grid-template-columns: repeat(3, calc(var(--u) * 345));
-    column-gap: calc(var(--u) * 26); row-gap: calc(var(--u) * 48);
+    column-gap: calc(var(--u) * 26); row-gap: calc(var(--u) * 26);
     padding: calc(var(--u) * 2) 0;
   }
   .g-item { display: block; text-align: left; }
   .g-item .im { display: block; width: 100%; height: calc(var(--u) * 518); background: var(--olive); overflow: hidden; }
   .g-item img { width: 100%; height: 100%; object-fit: cover; }
-  .g-item .no {
-    display: block; margin-top: calc(var(--u) * 14);
-    font-family: 'S-CoreDream-3Light', sans-serif;
-    font-size: calc(var(--u) * 32); line-height: calc(var(--u) * 32); color: var(--muted);
-  }
   .g-track {
     position: absolute; left: calc(var(--u) * 1138); top: 0;
     width: calc(var(--u) * 15); height: 100%; background: #DAD9BA; border-radius: calc(var(--u) * 8);
@@ -215,6 +211,7 @@
   .notice p { font-size: calc(var(--u) * 46); line-height: 1.6; }
   .notice p + p { margin-top: calc(var(--u) * 22); }
   .notice .em { font-weight: 700; }
+  .notice + .notice { margin-top: calc(var(--u) * 110); }
   @media (prefers-reduced-motion: reduce) { .notice { opacity: 1; transform: none; transition: none; } }
 
   /* 마음 전하실 곳 */
@@ -242,7 +239,10 @@
   /* 방명록 */
   .gb { margin-top: calc(var(--u) * 240); padding: 0 calc(var(--u) * 90); }
   .gb-lead { font-size: calc(var(--u) * 50); margin-top: calc(var(--u) * 36); }
-  .gb .thanks { font-size: calc(var(--u) * 52); line-height: 1.6; margin-bottom: calc(var(--u) * 200); }
+  .thanks { font-size: calc(var(--u) * 52); line-height: 1.6; }
+  .gb .thanks { margin-bottom: calc(var(--u) * 200); }
+  #thanksSlotB .thanks { margin-top: calc(var(--u) * 44); font-size: calc(var(--u) * 48); line-height: 1.55; }
+  .lead .lead-h { display: block; font-size: calc(var(--u) * 54); margin-bottom: calc(var(--u) * 24); }
   .gb-form { margin-top: calc(var(--u) * 56); display: grid; gap: calc(var(--u) * 24); }
   .gb-row { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 24); }
   .gb-form input, .gb-form textarea {
@@ -337,8 +337,8 @@
     <p>하나님께서 허락하신 소중한 인연으로<br>서로를 깊이 사랑하며<br>하나 되어 아름답게 살아가겠습니다.</p>
     <p>저희의 결혼잔치에 오셔서 따뜻한 축복과<br>즐거움을 나누어 주시기 바랍니다.</p>
     <div class="parents">
-      <div><b class="n2">김옥</b>의 장남<b class="child">이기업</b></div>
-      <div><b>류영신</b>의 장녀<b class="child">김연선</b></div>
+      <div><b class="n2">김옥</b>의 장남<b class="child"><span class="role">신랑</span>이기업</b></div>
+      <div><b>류영신</b>의 장녀<b class="child"><span class="role">신부</span>김연선</b></div>
     </div>
     <p class="when">2027년 01월 02일 토요일 오후 5시<br>SY컨벤션웨딩홀 9층</p>
   </section>
@@ -392,10 +392,17 @@
     <p><span class="em">본 건물 주차 공간이 협소</span>하여<br>당일 주차 요원 안내에 따라<br>주변 제2, 3공영주차장을 이용하실 수 있습니다.</p>
     <p>원활한 이동을 위해<br><span class="em">대중교통 이용을 권장</span>해 드립니다.</p>
   </aside>
+  <aside class="notice ko" id="timeNotice" aria-label="시간 안내">
+    <span class="notice-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>시간 안내</span>
+    <p>예식은 <span class="em">오후 5시</span>부터 진행됩니다.</p>
+    <p>식사는 예식 30분 전부터인<br><span class="em">4시 30분</span>부터 가능합니다.</p>
+  </aside>
 
   <!-- 마음 전하실 곳 -->
   <img class="ttl" src="images/design/t-acc.png" alt="Account" style="width:calc(var(--u)*428);margin-top:calc(var(--u)*300)">
-  <p class="ko lead">참석이 어려우신 분들을 위해<br>마음 전하실 곳을 안내해 드립니다.</p>
+  <p class="ko lead"><b class="lead-h">마음 전하실 곳</b>먼 곳에서 보내주시는 축하의 마음도<br>감사히 다정한 기쁨으로 받겠습니다.</p>
+  <!-- 2번 버전(?ver=2): 감사 문구가 이 자리로 옴 -->
+  <div id="thanksSlotB"></div>
   <div class="accs">
     <div class="acc">
       <button class="acc-head" type="button" aria-expanded="false">신랑측
@@ -423,7 +430,7 @@
 
   <!-- 방명록 (Cloudflare Pages Functions /api/guestbook 사용) -->
   <section class="gb" aria-labelledby="gbTitle">
-    <p class="ko thanks">보내주신 따뜻한 마음에<br>깊이 감사드립니다.</p>
+    <p class="ko thanks" id="thanksLine">보내주신 따뜻한 마음에<br>깊이 감사드립니다.</p>
     <h2 id="gbTitle"><img class="ttl" src="images/design/t-gb.png" alt="Guestbook" style="width:calc(var(--u)*500)"></h2>
     <p class="ko gb-lead">두 사람에게 축하의 마음을 남겨주세요.</p>
     <form class="gb-form" id="gbForm" autocomplete="off">
@@ -538,7 +545,7 @@
     var style = '';
     if (PHOTO_POS[i]) style = 'object-position:' + PHOTO_POS[i] + ' 50%';
     if (PHOTO_ZOOM[i]) style = 'transform:scale(' + PHOTO_ZOOM[i][0] + ');transform-origin:' + PHOTO_ZOOM[i][1] + ' 50%';
-    btn.innerHTML = '<span class="im"><img loading="lazy" src="images/thumb/' + i + '.jpg" alt="" style="' + style + '"></span><span class="no">(' + pad(i) + ')</span>';
+    btn.innerHTML = '<span class="im"><img loading="lazy" src="images/thumb/' + i + '.jpg" alt="" style="' + style + '"></span>';
     grid.appendChild(btn);
   }
   function syncScroll() {
@@ -683,12 +690,17 @@
     });
   })();
 
-  /* 주차 안내 상자: 화면에 들어오면 떠오르는 효과 */
-  var notice = document.getElementById('parkNotice');
-  if (visibleRatio(notice) < 0.25) {
+  /* 2번 버전: 주소 뒤에 ?ver=2 를 붙이면 감사 문구가 Account 안내문 바로 밑으로 이동 */
+  if (/[?&]ver=2\b/.test(location.search)) {
+    document.getElementById('thanksSlotB').appendChild(document.getElementById('thanksLine'));
+  }
+
+  /* 주차·시간 안내 상자: 화면에 들어오면 떠오르는 효과 */
+  Array.prototype.forEach.call(document.querySelectorAll('.notice'), function (notice) {
+    if (visibleRatio(notice) >= 0.25) return;
     notice.classList.add('pre');
     whenVisible(notice, 0.25, function () { notice.classList.remove('pre'); });
-  }
+  });
 
   /* 지도 앱 */
   document.getElementById('naverBtn').href = 'https://map.naver.com/p/search/' + encodeURIComponent(PLACE);
